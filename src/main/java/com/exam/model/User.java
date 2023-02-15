@@ -22,7 +22,7 @@ public class User implements UserDetails {
     @Column(name = "id")
     private Long id;
     @Column(name = "user_name")
-    private String userName;
+    private String username;
     @Column(name = "password")
     private String password;
     @Column(name = "first_name")
@@ -58,13 +58,11 @@ public class User implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
-        Set<Authority> set = new HashSet<>();
+        Set<Authority> set= new HashSet<>();
 
         this.userRoles.forEach(userRole -> {
             set.add(new Authority(userRole.getRole().getRoleName()));
-
         });
-
 
         return null;
     }

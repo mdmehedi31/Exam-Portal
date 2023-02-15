@@ -4,7 +4,7 @@ package com.exam.controller;
 import com.exam.config.JwtUtils;
 import com.exam.model.JwtRequest;
 import com.exam.model.JwtResponse;
-import com.exam.service.imple.UserDetailsServiceImple;
+import com.exam.service.imple.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -24,39 +24,49 @@ public class AuthenticateController {
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private UserDetailsServiceImple userDetailsServiceImple;
+    private UserDetailsServiceImpl userDetailsService;
 
     @Autowired
     private JwtUtils jwtUtils;
 
-
     //generate token
+
+
     @PostMapping("/generate-token")
     public ResponseEntity<?> generateToken(@RequestBody JwtRequest jwtRequest) throws Exception {
 
         try{
-            authenticate(jwtRequest.getUserName(),jwtRequest.getPassword());
+
+            this.authenticate(jwtRequest.getUsername(),jwtRequest.getPassword());
 
         }catch (UsernameNotFoundException e){
             e.printStackTrace();
-            throw new Exception("User not found");
+            throw new Exception("User Not found");
         }
 
-     UserDetails userDetails =   this.userDetailsServiceImple.loadUserByUsername(jwtRequest.getUserName());
+        //authenticate
+
+        UserDetails userDetails =this.userDetailsService.loadUserByUsername(jwtRequest.getUsername());
+
         String token= this.jwtUtils.generateToken(userDetails);
 
         return ResponseEntity.ok(new JwtResponse(token));
+
     }
 
-    private void authenticate(String username, String password) throws Exception {
-         try{
 
-             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username,password));
-         }catch (DisabledException e){
-             throw new Exception("User Disabled"+e.getMessage());
-         }
-         catch (BadCredentialsException e){
-             throw new Exception("Invalid Credentials"+e.getMessage());
-         }
+    private void authenticate(String username, String password) throws Exception {
+
+        try{
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username,password));
+
+        }catch (DisabledException e){
+            throw new Exception("USER DISABLED"+e.getMessage());
+        }catch (BadCredentialsException e){
+
+            throw new Exception("Invalid Credentials"+e.getMessage());
+        }
+
+
     }
 }

@@ -7,11 +7,11 @@ import lombok.Setter;
 @Setter
 public class JwtRequest {
 
-    String userName;
+    String username;
     String password;
 
-    public JwtRequest(String userName, String password) {
-        this.userName = userName;
+    public JwtRequest(String username, String password) {
+        this.username = username;
         this.password = password;
     }
 }
