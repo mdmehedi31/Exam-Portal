@@ -1,13 +1,23 @@
 package com.exam;
 
+import com.exam.model.Role;
+import com.exam.model.User;
+import com.exam.model.UserRole;
+import com.exam.service.definition.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @SpringBootApplication
 public class ExamserverApplication implements CommandLineRunner {
 
 
+    @Autowired
+    private UserService userService;
 
     public static void main(String[] args) {
         SpringApplication.run(ExamserverApplication.class, args);
@@ -15,31 +25,33 @@ public class ExamserverApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println("Starting code");
-/*
+
+        try {
+            System.out.println("Starting code");
+            User aUser = new User();
+
+            aUser.setFirstName("Mehedi");
+            aUser.setLastName("Hasan");
+            aUser.setUsername("mehedi3");
+            aUser.setPassword("1234567");
+            aUser.setEmail("mehedi@gmail.com");
+            aUser.setProfile("default.png");
 
 
-        User aUser= new User();
+            Role role1 = new Role();
+            role1.setRoleName("ADMIN");
 
-        aUser.setFirstName("Mehedi");
-        aUser.setLastName("Hasan");
-        aUser.setUserName("mehedi3");
-        aUser.setPassword("1234567");
-        aUser.setEmail("mehedi@gmail.com");
-        aUser.setProfile("default.png");
+            Set<UserRole> userRoleSet = new HashSet<>();
+            UserRole userRole = new UserRole();
+            userRole.setRole(role1);
+            userRole.setUser(aUser);
 
+            userRoleSet.add(userRole);
 
-        Role role1= new Role();
-        role1.setRoleName("ADMIN");
-
-        Set<UserRole> userRoleSet= new HashSet<>();
-        UserRole userRole= new UserRole();
-        userRole.setRole(role1);
-        userRole.setUser(aUser);
-
-        userRoleSet.add(userRole);
-
-        User user1= this.userService.createUser(aUser,userRoleSet);
-        System.out.println("User name is: "+user1.getUserName());*/
+            User user1 = this.userService.createUser(aUser, userRoleSet);
+            System.out.println("User name is: " + user1.getUsername());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

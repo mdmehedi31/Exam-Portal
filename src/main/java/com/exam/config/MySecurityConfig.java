@@ -1,3 +1,4 @@
+/*
 package com.exam.config;
 
 
@@ -70,3 +71,4 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
         http.addFilterBefore(jwtAuthenticationFilter,UsernamePasswordAuthenticationFilter.class);
     }
 }
+*/

@@ -1,3 +1,4 @@
+/*
 package com.exam.config;
 
 import io.jsonwebtoken.Claims;
@@ -55,3 +56,4 @@ public class JwtUtils {
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 }
+*/

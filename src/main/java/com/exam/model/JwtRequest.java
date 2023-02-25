@@ -1,3 +1,4 @@
+/*
 package com.exam.model;
 
 import lombok.Getter;
@@ -15,3 +16,4 @@ public class JwtRequest {
         this.password = password;
     }
 }
+*/

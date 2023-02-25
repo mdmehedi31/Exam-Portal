@@ -1,3 +1,4 @@
+/*
 package com.exam.model;
 
 import lombok.Getter;
@@ -13,3 +14,4 @@ public class JwtResponse {
         this.token = token;
     }
 }
+*/

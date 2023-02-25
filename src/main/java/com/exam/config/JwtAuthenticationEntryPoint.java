@@ -1,3 +1,4 @@
+/*
 package com.exam.config;
 
 import jakarta.servlet.ServletException;
@@ -19,3 +20,4 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
     }
 }
+*/
