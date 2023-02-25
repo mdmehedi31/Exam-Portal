@@ -20,7 +20,7 @@ public class UserServiceImple implements UserService {
     //user creating
     @Override
     public User createUser(User user, Set<UserRole> userRoles) {
-        User local= this.userRepository.findByUserName(user.getUsername());
+        User local= this.userRepository.findByUserName(user.getUserName());
 
         if(local!=null){
             System.out.println("User is already available.!!");

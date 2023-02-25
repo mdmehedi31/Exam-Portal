@@ -4,10 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,14 +13,14 @@ import java.util.Set;
 @Table(name = "users")
 @Getter
 @Setter
-public class User implements UserDetails {
+public class User /*implements UserDetails*/ {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
     @Column(name = "user_name")
-    private String username;
+    private String userName;
     @Column(name = "password")
     private String password;
     @Column(name = "first_name")
@@ -41,8 +39,6 @@ public class User implements UserDetails {
     public User(){
 
     }
-
-
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "user")
     @JsonIgnore
     private Set<UserRole> userRoles= new HashSet<>();
@@ -55,7 +51,7 @@ public class User implements UserDetails {
         this.userRoles = userRoles;
     }
 
-    @Override
+    /*@Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
         Set<Authority> set= new HashSet<>();
@@ -65,9 +61,9 @@ public class User implements UserDetails {
         });
 
         return null;
-    }
+    }*/
 
-    @Override
+   /* @Override
     public String getUsername() {
         return null;
     }
@@ -85,5 +81,5 @@ public class User implements UserDetails {
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
-    }
+    }*/
 }
