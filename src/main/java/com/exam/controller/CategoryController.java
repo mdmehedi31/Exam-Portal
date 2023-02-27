@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @RestController
 @RequestMapping("/category")
 public class CategoryController {
@@ -31,12 +34,12 @@ public class CategoryController {
 
     //Get Category List
     @GetMapping("/")
-    public ResponseEntity<?> getCategories(){
-        return ResponseEntity.ok(this.categoryService.getCategories());
+    public Set<Category> getCategories(){
+        return new HashSet<>(this.categoryService.getCategories());
     }
 
     //Update Category
-    @PutMapping({"/"})
+    @PutMapping("/")
     public Category updateCategory(@RequestBody Category category){
        return this.categoryService.updateCategory(category);
     }
