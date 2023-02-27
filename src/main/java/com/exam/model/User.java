@@ -4,8 +4,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,7 +16,7 @@ import java.util.Set;
 @Table(name = "users")
 @Getter
 @Setter
-public class User /*implements UserDetails*/ {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -36,9 +39,7 @@ public class User /*implements UserDetails*/ {
     @Column(name = "profile")
     private String profile;
 
-    public User(){
 
-    }
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "user")
     @JsonIgnore
     private Set<UserRole> userRoles= new HashSet<>();
@@ -51,35 +52,28 @@ public class User /*implements UserDetails*/ {
         this.userRoles = userRoles;
     }
 
-    /*@Override
+    @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-
-        Set<Authority> set= new HashSet<>();
-
-        this.userRoles.forEach(userRole -> {
-            set.add(new Authority(userRole.getRole().getRoleName()));
-        });
-
         return null;
-    }*/
+    }
 
-   /* @Override
+    @Override
     public String getUsername() {
         return null;
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return true;
+        return false;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return false;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return true;
-    }*/
+        return false;
+    }
 }
