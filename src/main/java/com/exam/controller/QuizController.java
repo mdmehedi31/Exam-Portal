@@ -1,7 +1,5 @@
 package com.exam.controller;
 
-
-import com.exam.model.exam.Category;
 import com.exam.model.exam.Quiz;
 import com.exam.service.definition.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;

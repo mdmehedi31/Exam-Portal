@@ -28,15 +28,19 @@ public class Quiz {
     @Column(name = "active")
     private boolean active=false;
 
+    @Column(name = "maxMarks")
+    private String maxMarks;
+
+    @Column(name = "numberOfQus")
+    private String numberOfQuestion;
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Category category;
 
-    /*@OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL)
-    private Set<Question> questionSet= new HashSet<>();*/
 
     @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
     private Set<Question> question= new HashSet<>();
+
 
 }
