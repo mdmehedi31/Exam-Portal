@@ -24,9 +24,8 @@ public class QuestionController {
     @Autowired
     private QuizService  quizService;
 
-    @PostMapping("/add_question")
-    public ResponseEntity<?>  addQuestion(@RequestBody Question question){
-
+    @PostMapping("/add-question")
+    public ResponseEntity<Question>  addQuestion(@RequestBody Question question){
         return ResponseEntity.ok(this.questionService.addQuestion(question));
     }
     @PutMapping("/update_question")
@@ -48,6 +47,14 @@ public class QuestionController {
         return ResponseEntity.ok(list);
     }
 
+    @GetMapping("/quiz/all/{qid}")
+    public ResponseEntity<?> getQuestionAdmin(@PathVariable("qid") Long qid){
+
+        Quiz quiz= new Quiz();
+        quiz.setQId(qid);
+        Set<Question> questionSet= this.questionService.getQuestionOfQuiz(quiz);
+        return ResponseEntity.ok(questionSet);
+    }
     // single question
     @GetMapping("/single-quiz/{quesId}")
     public Question getSingleQuestion(@PathVariable("quesId") Long quesId){

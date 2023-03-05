@@ -26,7 +26,7 @@ public class Quiz {
     private String description;
 
     @Column(name = "active")
-    private boolean active=false;
+    private boolean active=true;
 
     @Column(name = "maxMarks")
     private String maxMarks;
@@ -37,10 +37,8 @@ public class Quiz {
     @ManyToOne(fetch = FetchType.EAGER)
     private Category category;
 
-
     @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
     private Set<Question> question= new HashSet<>();
-
 
 }

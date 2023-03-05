@@ -1,5 +1,6 @@
 package com.exam.model.exam;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,6 +9,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@Table(name = "question")
 public class Question {
 
     @Id
@@ -34,6 +36,7 @@ public class Question {
     @Column(name = "answare", length = 2000)
     private String answare;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonIgnore
     private Quiz quiz;
 }

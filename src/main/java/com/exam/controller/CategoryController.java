@@ -11,6 +11,7 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("/category")
+@CrossOrigin("*")
 public class CategoryController {
 
 
@@ -33,7 +34,7 @@ public class CategoryController {
     }
 
     //Get Category List
-    @GetMapping("/")
+    @GetMapping("/category-list")
     public Set<Category> getCategories(){
         return new HashSet<>(this.categoryService.getCategories());
     }
