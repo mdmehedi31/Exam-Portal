@@ -39,4 +39,7 @@ public class Question {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonIgnore
     private Quiz quiz;
+
+    @Transient
+    private String givenAnswer;
 }
