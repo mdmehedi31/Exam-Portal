@@ -6,6 +6,7 @@ import com.exam.repository.QuizRepository;
 import com.exam.service.definition.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.Set;
 
 
 @Service
+@Transactional
 public class QuizServiceImpl implements QuizService {
 
     @Autowired

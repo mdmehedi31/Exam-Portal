@@ -26,7 +26,7 @@ public class Quiz {
     private String description;
 
     @Column(name = "active")
-    private boolean active=true;
+    private boolean active=false;
 
     @Column(name = "maxMarks")
     private String maxMarks;

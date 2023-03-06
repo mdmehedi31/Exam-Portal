@@ -28,12 +28,4 @@ public class Category {
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<Quiz> quizSet= new LinkedHashSet<>();
-
-    public Category() {
-    }
-
-    public Category(String title, String description) {
-        this.title = title;
-        this.description = description;
-    }
 }
